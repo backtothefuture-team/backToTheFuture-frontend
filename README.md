@@ -1,4 +1,4 @@
-# back_to_the_furture
+# back_to_the_future
 
 A new Flutter project.
 
