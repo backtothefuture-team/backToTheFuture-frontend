@@ -1,8 +1,8 @@
-import 'package:back_to_the_future/ui/my_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'bottom_nav_controller.dart';
+import 'my_bottom_navigation.dart';
 
 class HomePages extends StatelessWidget {
   const HomePages({super.key});
