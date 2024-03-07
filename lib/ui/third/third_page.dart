@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_api_ex/ui/third/third_menu_list.dart';
+import 'package:rest_api_ex/ui/third/third_recent_order_list.dart';
 import 'package:rest_api_ex/ui/third/third_user_profile.dart';
 
 class ThirdPage extends StatelessWidget {
@@ -17,6 +18,8 @@ class ThirdPage extends StatelessWidget {
         child: Column(
           children: [
             UserProfile(),
+            RecentOrderList(),
+            Divider(color: Colors.grey,),
             MenuList()
           ],
         ),
