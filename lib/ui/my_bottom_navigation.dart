@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rest_api_ex/ui/second_page.dart';
 import 'package:rest_api_ex/ui/third/third_page.dart';
 
-import 'first_page.dart';
+import 'first/first_page.dart';
 
 class MyBottomNavigation extends StatefulWidget {
   const MyBottomNavigation({super.key});
