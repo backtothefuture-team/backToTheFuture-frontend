@@ -16,29 +16,26 @@ class MenuList extends StatelessWidget {
       Icons.question_mark_outlined
     ];
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.7,
-      child: ListView.builder(
-          itemCount: menuList.length,
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: (){},
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Icon(menuIcons[index]),
-                    Gaps.gapW10,
-                    Text(
-                      menuList[index],
-                      style: MyText.fontSize17,
-                    ),
-                  ],
-                ),
+    return Column(
+      children: [
+        for( int i = 0; i < menuList.length; i++ )
+          InkWell(
+            onTap: (){},
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Icon(menuIcons[i]),
+                  Gaps.gapW10,
+                  Text(
+                    menuList[i],
+                    style: MyText.fontSize17,
+                  )
+                ],
               ),
-            );
-          }
-      ),
+            ),
+          )
+      ],
     );
   }
 }
