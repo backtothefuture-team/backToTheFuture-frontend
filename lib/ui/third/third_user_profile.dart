@@ -9,51 +9,55 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(20.0),
       height: MediaQuery.of(context).size.height * 0.4,
       color: Colors.amberAccent,
-      child: Column(
-        children: [
-          // 사용자 프로필
-          userProfile(context),
+      child: Center(
+        child: Column(
+          children: [
+            Gaps.spacer,
 
-          // 사용자 메뉴 리스트
-          privateMenuList()
-        ],
+            // 사용자 프로필
+            userProfile(context),
+
+            Gaps.spacer,
+
+            // 사용자 메뉴 리스트(주문 내역, 리뷰 관리, 나의 찜)
+            privateMenuList()
+          ],
+        ),
       ),
     );
   }
 
   // 사용자 프로필
   Widget userProfile(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // 프로필 사진
-          ClipRRect(
-            borderRadius: BorderRadius.circular(125),
-            child: Image.asset(
-              'assets/images/sample2.png',
-              width: MediaQuery.of(context).size.width * 0.3,
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // 프로필 사진
+        ClipRRect(
+          borderRadius: BorderRadius.circular(125),
+          child: Image.asset(
+            'assets/images/sample2.png',
+            width: MediaQuery.of(context).size.width * 0.3,
           ),
+        ),
 
-          Gaps.gapH10,
+        Gaps.gapH10,
 
-          // 이름
-          Text(
-            '김창영 님',
-            style: TextStyle(
-                fontSize: 20.0
-            ),
-          )
-        ],
-      ),
+        // 이름
+        Text(
+          '김창영 님',
+          style: TextStyle(
+              fontSize: 20.0
+          ),
+        )
+      ],
     );
   }
 
-  // 사용자 메뉴 리스트
+  // 사용자 메뉴 리스트(주문 내역, 리뷰 관리, 나의 찜)
   Widget privateMenuList() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
