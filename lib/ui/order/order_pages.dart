@@ -10,14 +10,17 @@ class OrderPages extends StatelessWidget {
       appBar: AppBar(
         title: const Text('예약하기'),
       ),
-      body: Column(
-        children: [
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
 
-          // 픽업 시간 정보
-          PickUpTimeInfo(),
+            // 픽업 시간 정보
+            PickUpTimeInfo(),
 
 
-        ],
+          ],
+        ),
       ),
     );
   }
