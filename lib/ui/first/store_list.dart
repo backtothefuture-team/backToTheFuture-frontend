@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/gaps.dart';
+import '../store_info/store_info_page.dart';
 
 class StoreList extends StatelessWidget {
   const StoreList({super.key});
@@ -10,18 +11,29 @@ class StoreList extends StatelessWidget {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return Card(
-          margin: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
-          color: Colors.white,
-          elevation: 5.0,
-          child: Column(
-            children: [
-              // 상단 세 장 이미지
-              imagesWidget(context),
+        return GestureDetector(
 
-              // 하단 가게 정보(이름, 리뷰 수, 픽업 시간 등)
-              storeInfo()
-            ],
+          // 가게 클릭, 페이지 이동
+          onTap: (){
+            print('가게 클릭 : $index');
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => StoreInfo(selectedStore: index,)
+            ));
+          },
+
+          child: Card(
+            margin: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+            color: Colors.white,
+            elevation: 5.0,
+            child: Column(
+              children: [
+                // 상단 세 장 이미지
+                imagesWidget(context),
+
+                // 하단 가게 정보(이름, 리뷰 수, 픽업 시간 등)
+                storeInfo()
+              ],
+            ),
           ),
         );
       }
