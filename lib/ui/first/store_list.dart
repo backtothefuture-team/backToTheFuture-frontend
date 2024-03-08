@@ -17,7 +17,7 @@ class StoreList extends StatelessWidget {
           onTap: (){
             print('가게 클릭 : $index');
             Navigator.push(context, MaterialPageRoute(
-                builder: (context) => StoreInfo(selectedStoreIndex: index,)
+                builder: (context) => StoreInfoPage(selectedStoreIndex: index,)
             ));
           },
 
