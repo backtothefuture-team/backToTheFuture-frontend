@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_api_ex/config/gaps.dart';
-import 'package:rest_api_ex/ui/first/food_list.dart';
+import 'package:rest_api_ex/ui/store_info/food_list.dart';
 import 'package:rest_api_ex/ui/store_info/store_info.dart';
 
 class StoreInfoPage extends StatelessWidget {
