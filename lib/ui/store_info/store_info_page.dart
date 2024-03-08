@@ -4,6 +4,8 @@ import 'package:rest_api_ex/config/gaps.dart';
 import 'package:rest_api_ex/ui/store_info/food_list.dart';
 import 'package:rest_api_ex/ui/store_info/store_info.dart';
 
+import 'order_button.dart';
+
 class StoreInfoPage extends StatelessWidget {
   const StoreInfoPage({required this.selectedStoreIndex, super.key});
 
@@ -12,6 +14,10 @@ class StoreInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      // 예약 버튼
+      bottomNavigationBar: const OrderButton(),
+
       body: CustomScrollView(
         slivers: [
           // appBar 배경 이미지
@@ -27,7 +33,7 @@ class StoreInfoPage extends StatelessWidget {
                   StoreInfo(selectedStoreIndex: selectedStoreIndex),
 
                   // 메뉴 정보
-                  FoodList()
+                  const FoodList(),
                 ],
               ),
             ),
