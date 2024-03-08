@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../order/order_pages.dart';
+
 class OrderButton extends StatelessWidget {
   const OrderButton({super.key});
 
@@ -30,7 +32,16 @@ class OrderButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)
             )
           ),
-          onPressed: (){},
+
+          // 예약 페이지로 이동
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (builder) => const OrderPages()
+              ));
+          },
+
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text('예약하기'),
