@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_api_ex/config/gaps.dart';
+import 'package:rest_api_ex/ui/first/food_list.dart';
 
 class StoreInfo extends StatelessWidget {
-  const StoreInfo({required this.selectedStore, super.key});
+  const StoreInfo({required this.selectedStoreIndex, super.key});
 
-  final int selectedStore;
+  final int selectedStoreIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,12 @@ class StoreInfo extends StatelessWidget {
                 children: [
 
                   // 가게 정보
-                  storeInfo(),
+                  storeInfo(selectedStoreIndex),
 
                   // 찜, 길찾기, 공유 버튼
-                  placeMenus()
+                  placeMenus(),
+
+                  FoodList()
                 ],
               ),
             ),
@@ -49,15 +52,15 @@ class StoreInfo extends StatelessWidget {
   }
 
   // 가게 정보
-  Widget storeInfo() {
-   return const Padding(
+  Widget storeInfo(int selectedStoreIndex) {
+   return Padding(
      padding: EdgeInsets.all(15.0),
      child: Column(
        children: [
 
          // 가게명
          Text(
-           '참바른빵',
+           '참바른빵($selectedStoreIndex)',
            style: TextStyle(
                fontSize: 20.0,
                fontWeight: FontWeight.bold
@@ -70,7 +73,7 @@ class StoreInfo extends StatelessWidget {
          Divider(color: Colors.grey,),
 
          // 픽업 가능 시간
-         Row(
+         const Row(
            mainAxisAlignment: MainAxisAlignment.center,
            children: [
              Icon(CupertinoIcons.clock),
