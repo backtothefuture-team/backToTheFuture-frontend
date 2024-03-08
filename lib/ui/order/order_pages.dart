@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api_ex/ui/order/pay_button.dart';
 import 'package:rest_api_ex/ui/order/pick_up_time_info.dart';
 
 class OrderPages extends StatelessWidget {
@@ -10,6 +11,10 @@ class OrderPages extends StatelessWidget {
       appBar: AppBar(
         title: const Text('예약하기'),
       ),
+
+      // 결제 버튼
+      bottomNavigationBar: const PayButton(),
+
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
