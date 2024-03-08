@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rest_api_ex/ui/order/pay_button.dart';
 import 'package:rest_api_ex/ui/order/pick_up_time_info.dart';
 
+import 'order_list.dart';
+
 class OrderPages extends StatelessWidget {
   const OrderPages({super.key});
 
@@ -25,6 +27,9 @@ class OrderPages extends StatelessWidget {
 
             // 예약 시 유의사항
             reservationNotice(),
+
+            // 결제할 상품 목록
+            const OrderList()
           ],
         ),
       ),
