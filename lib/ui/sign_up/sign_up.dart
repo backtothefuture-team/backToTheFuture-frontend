@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:rest_api_ex/ui/sign_up/sign_up_form.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -11,11 +12,13 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
 
   bool showSpinner = false;
-  var formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
-  var userNameController = TextEditingController();
-  var userPasswordController = TextEditingController();
-  var userMobileNumberController = TextEditingController();
+  final userNameController = TextEditingController();
+  final userPasswordController = TextEditingController();
+  final userMobileNumberController = TextEditingController();
+  final userResidenceController = TextEditingController();
+  final promotionCodeController = TextEditingController();
 
 
   // 유효성 검사
@@ -34,6 +37,8 @@ class _SignUpState extends State<SignUp> {
     userNameController.dispose();
     userPasswordController.dispose();
     userMobileNumberController.dispose();
+    userResidenceController.dispose();
+    promotionCodeController.dispose();
   }
 
 
@@ -46,76 +51,25 @@ class _SignUpState extends State<SignUp> {
 
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
-        child: Form(
-          key: formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
+        child: Column(
+          children: [
+            SignUpForm(
+              formKey: formKey,
+              userNameController: userNameController,
+              userPasswordController: userPasswordController,
+              userMobileNumberController: userMobileNumberController,
+              userResidenceController: userResidenceController,
+              promotionCodeController: promotionCodeController,
 
-                  // 이름
-                  TextFormField(
-                    controller: userNameController,
-                    validator: (value) =>
-                      value == '' ? '이름을 입력해 주세요.' : null,
-                      decoration: _setTextFormDecoration('이름'),
-                  ),
-
-
-                  // 비밀번호
-                  TextFormField(
-                    controller: userPasswordController,
-                    validator: (value) =>
-                    value == '' ? '비밀번호는 6자리 이상 입력해 주세요.' : null,
-                    decoration: _setTextFormDecoration('비밀번호'),
-                  ),
-
-
-                  // 비밀번호 확인
-                  TextFormField(
-                    validator: (value) =>
-                    value == '' || value != userPasswordController.text ?
-                      '비밀번호가 일치하지 않습니다.' : null,
-                    decoration: _setTextFormDecoration('비밀번호 확인'),
-                  ),
-
-
-                  // 휴대전화번호
-                  TextFormField(
-                    controller: userMobileNumberController,
-                    validator: (value) =>
-                    value == '' ? '휴대전화번호를 입력해 주세요.' : null,
-                    decoration: _setTextFormDecoration('휴대전화번호'),
-                  ),
-
-
-                  // 거주지
-                  TextFormField(
-                    controller: userNameController,
-                    decoration: _setTextFormDecoration('거주지'),
-                  ),
-
-
-                  // 프로모션 코드
-                  TextFormField(
-                    controller: userNameController,
-                    decoration: _setTextFormDecoration('프로모션 코드'),
-                  )
-                ],
-              ),
+              onSignUpPressed: () {
+                _tryValidation();
+                setState(() {
+                  // showSpinner = true;
+                });
+              },
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  InputDecoration _setTextFormDecoration(String labelText) {
-    return InputDecoration(
-      labelText: labelText,
-      labelStyle: const TextStyle(
-        color: Colors.black54,
+          ],
+        )
       ),
     );
   }
