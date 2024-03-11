@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../sign_up/sign_up.dart';
+
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
 
@@ -11,7 +13,12 @@ class SignIn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUp())
+                );
+              },
               child: Text('회원가입')
             ),
 
