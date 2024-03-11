@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -43,63 +44,66 @@ class _SignUpState extends State<SignUp> {
         title: const Text('회원가입'),
       ),
 
-      body: Form(
-        key: formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: Form(
+          key: formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
 
-                // 이름
-                TextFormField(
-                  controller: userNameController,
-                  validator: (value) =>
-                    value == '' ? '이름을 입력해 주세요.' : null,
-                    decoration: _setTextFormDecoration('이름'),
-                ),
-
-
-                // 비밀번호
-                TextFormField(
-                  controller: userPasswordController,
-                  validator: (value) =>
-                  value == '' ? '비밀번호는 6자리 이상 입력해 주세요.' : null,
-                  decoration: _setTextFormDecoration('비밀번호'),
-                ),
+                  // 이름
+                  TextFormField(
+                    controller: userNameController,
+                    validator: (value) =>
+                      value == '' ? '이름을 입력해 주세요.' : null,
+                      decoration: _setTextFormDecoration('이름'),
+                  ),
 
 
-                // 비밀번호 확인
-                TextFormField(
-                  validator: (value) =>
-                  value == '' || value != userPasswordController.text ?
-                    '비밀번호가 일치하지 않습니다.' : null,
-                  decoration: _setTextFormDecoration('비밀번호 확인'),
-                ),
+                  // 비밀번호
+                  TextFormField(
+                    controller: userPasswordController,
+                    validator: (value) =>
+                    value == '' ? '비밀번호는 6자리 이상 입력해 주세요.' : null,
+                    decoration: _setTextFormDecoration('비밀번호'),
+                  ),
 
 
-                // 휴대전화번호
-                TextFormField(
-                  controller: userMobileNumberController,
-                  validator: (value) =>
-                  value == '' ? '휴대전화번호를 입력해 주세요.' : null,
-                  decoration: _setTextFormDecoration('휴대전화번호'),
-                ),
+                  // 비밀번호 확인
+                  TextFormField(
+                    validator: (value) =>
+                    value == '' || value != userPasswordController.text ?
+                      '비밀번호가 일치하지 않습니다.' : null,
+                    decoration: _setTextFormDecoration('비밀번호 확인'),
+                  ),
 
 
-                // 거주지
-                TextFormField(
-                  controller: userNameController,
-                  decoration: _setTextFormDecoration('거주지'),
-                ),
+                  // 휴대전화번호
+                  TextFormField(
+                    controller: userMobileNumberController,
+                    validator: (value) =>
+                    value == '' ? '휴대전화번호를 입력해 주세요.' : null,
+                    decoration: _setTextFormDecoration('휴대전화번호'),
+                  ),
 
 
-                // 프로모션 코드
-                TextFormField(
-                  controller: userNameController,
-                  decoration: _setTextFormDecoration('프로모션 코드'),
-                )
-              ],
+                  // 거주지
+                  TextFormField(
+                    controller: userNameController,
+                    decoration: _setTextFormDecoration('거주지'),
+                  ),
+
+
+                  // 프로모션 코드
+                  TextFormField(
+                    controller: userNameController,
+                    decoration: _setTextFormDecoration('프로모션 코드'),
+                  )
+                ],
+              ),
             ),
           ),
         ),
