@@ -5,10 +5,22 @@ class ErrorHandler implements Exception {
 
   ErrorHandler.handle(dynamic error) {
     if( error is DioException ) {
-      failure = _handleError(error);
-      print('DioException >> $failure');
-    } else {
-      print('error');
+      if (error.response != null) {
+        if (error.response!.statusCode! >= 400 &&
+            error.response!.statusCode! < 500) {
+          // 클라이언트 오류인 경우
+          final responseData = error.response!.data;
+          final errorCode = responseData['errorCode'];
+          final errorMessage = responseData['errorMessage'];
+        } else if (error.response!.statusCode! >= 500 &&
+            error.response!.statusCode! < 600) {
+          // 서버 오류인 경우
+          // 추가적인 조치 수행
+          // ...
+        }
+      } else {
+        print('그 외 에러');
+      }
     }
   }
 }

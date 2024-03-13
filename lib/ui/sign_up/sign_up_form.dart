@@ -88,13 +88,13 @@ class SignUpForm extends StatelessWidget {
               // 회원가입 버튼
               ElevatedButton(
                 onPressed: () async {
-                  List<String> phoneNumber = ['010', '1234', '5678'];
+                  List<String> phoneNumber = ['010', '5678', '1234'];
 
                   try {
 
                     await restClient.createUser(
                       'test1',
-                      'test1@email.com',
+                      'test1@naver.com',
                       '123456', '123456', phoneNumber
                     );
 
