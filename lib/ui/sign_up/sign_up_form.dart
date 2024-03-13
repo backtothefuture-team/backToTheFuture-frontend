@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:rest_api_ex/data/source/ErrorHandler.dart';
+import 'package:rest_api_ex/data/source/rest_client.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up_text_form_field.dart';
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm({
+  SignUpForm({
     required this.formKey,
     required this.userNameController,
     required this.userPasswordController,
@@ -20,6 +23,8 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController userResidenceController;
   final TextEditingController promotionCodeController;
   final VoidCallback onSignUpPressed;
+
+  final RestClient restClient = GetIt.instance<RestClient>();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +87,21 @@ class SignUpForm extends StatelessWidget {
 
               // 회원가입 버튼
               ElevatedButton(
-                onPressed: onSignUpPressed,
+                onPressed: () async {
+                  List<String> phoneNumber = ['010', '1234', '5678'];
+
+                  try {
+
+                    await restClient.createUser(
+                      'test1',
+                      'test1@email.com',
+                      '123456', '123456', phoneNumber
+                    );
+
+                  } catch(error) {
+                    ErrorHandler.handle(error);
+                  }
+                },
                 child: Text('회원가입')
               )
             ],
