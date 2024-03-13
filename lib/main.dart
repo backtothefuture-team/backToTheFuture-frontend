@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api_ex/data/di.dart';
 import 'package:rest_api_ex/ui/home_pages.dart';
 
-void main() {
+void main() async {
+  await initModule();
   runApp(const MyApp());
 }
 
