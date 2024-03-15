@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:rest_api_ex/data/model/user_model.dart';
 import 'package:rest_api_ex/data/source/ErrorHandler.dart';
 import 'package:rest_api_ex/data/source/rest_client.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up_text_form_field.dart';
@@ -89,14 +90,15 @@ class SignUpForm extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   List<String> phoneNumber = ['010', '5678', '1234'];
+                  var userModel = UserModel(
+                      name: 'test1',
+                      email: 'test1@email.com',
+                      password: '123456',
+                      passwordConfirm: '123456',
+                      phoneNumber: phoneNumber);
 
                   try {
-
-                    await restClient.createUser(
-                      'test1',
-                      'test1@naver.com',
-                      '123456', '123456', phoneNumber
-                    );
+                    await restClient.createUser(userModel);
 
                   } catch(error) {
                     ErrorHandler.handle(error);

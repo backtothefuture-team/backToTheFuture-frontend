@@ -13,7 +13,7 @@ class _RestClient implements RestClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://localhost:8080/v1';
+    baseUrl ??= 'http://10.0.2.2:8080/v1';
   }
 
   final Dio _dio;
@@ -48,23 +48,12 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<UserModel> createUser(
-    String name,
-    String email,
-    String password,
-    String passwordConfirm,
-    List<String> phoneNumber,
-  ) async {
+  Future<UserModel> createUser(UserModel body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = {
-      'name': name,
-      'email': email,
-      'password': password,
-      'passwordConfirm': passwordConfirm,
-      'phoneNumber': phoneNumber,
-    };
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<UserModel>(Options(
       method: 'POST',
