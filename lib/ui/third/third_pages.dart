@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api_ex/ui/third/sign_out.dart';
 import 'package:rest_api_ex/ui/third/third_menu_list.dart';
 import 'package:rest_api_ex/ui/third/third_recent_order_list.dart';
 import 'package:rest_api_ex/ui/third/third_user_profile.dart';
 
-class ThirdPage extends StatelessWidget {
-  const ThirdPage({super.key});
+class ThirdPages extends StatelessWidget {
+  const ThirdPages({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,8 @@ class ThirdPage extends StatelessWidget {
             UserProfile(),
             RecentOrderList(),
             Divider(color: Colors.grey,),
-            MenuList()
+            MenuList(),
+            SignOut(),
           ],
         ),
       ),

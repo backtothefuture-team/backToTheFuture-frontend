@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_api_ex/ui/second_page.dart';
-import 'package:rest_api_ex/ui/third/third_page.dart';
+import 'package:rest_api_ex/ui/third/third_pages.dart';
 
 import 'first/first_page.dart';
 
@@ -17,7 +17,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
   static const pages = [
     FirstPage(),
     SecondPage(),
-    ThirdPage()
+    ThirdPages()
   ];
 
   @override

@@ -13,7 +13,7 @@ class _RestClient implements RestClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://localhost:8080/v1';
+    baseUrl ??= 'http://10.0.2.2:8080/v1';
   }
 
   final Dio _dio;
@@ -35,6 +35,34 @@ class _RestClient implements RestClient {
             .compose(
               _dio.options,
               '/member/register/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UserModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UserModel> createUser(UserModel body) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UserModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/member/register',
               queryParameters: queryParameters,
               data: _data,
             )
