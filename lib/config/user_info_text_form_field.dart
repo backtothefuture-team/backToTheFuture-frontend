@@ -33,21 +33,27 @@ class UserInfoTextFormField extends StatelessWidget {
 
   InputDecoration _setTextFormDecoration(String labelText) {
     return InputDecoration(
-      labelText: labelText,
-      labelStyle: const TextStyle(
-        color: Colors.black54,
-      ),
-
-      // 이메일 인증 요청에서만 필요한 부분
-      suffixIcon: isButtonEnabled != null && isButtonEnabled == true
-          ? const Icon(Icons.check, color: Palette.primaryColor,)
-          : null,
-
-      enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(
-          color: Palette.primaryColor,
+        labelText: labelText,
+        labelStyle: const TextStyle(
+          color: Colors.black54,
         ),
-      ),
+
+        // 이메일 인증 요청에서만 필요한 부분
+        suffixIcon: isButtonEnabled != null && isButtonEnabled == true
+            ? const Icon(Icons.check, color: Palette.primaryColor,)
+            : null,
+
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Palette.primaryColor,
+          ),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Palette.primaryColor,
+          ),
+        )
     );
   }
 }
