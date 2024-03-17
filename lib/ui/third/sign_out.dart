@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rest_api_ex/ui/sign_in/sign_in.dart';
+import 'package:rest_api_ex/ui/sign_in/sign_in_main_page.dart';
 
 class SignOut extends StatelessWidget {
   const SignOut({super.key});
@@ -10,7 +10,7 @@ class SignOut extends StatelessWidget {
       onTap: (){
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const SignIn()
+            MaterialPageRoute(builder: (context) => const MainSignInPage()
         ));
       },
 

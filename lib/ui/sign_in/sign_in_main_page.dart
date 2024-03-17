@@ -4,8 +4,8 @@ import 'package:rest_api_ex/config/gaps.dart';
 import '../sign_up/sign_up.dart';
 import 'sign_in_email.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+class MainSignInPage extends StatelessWidget {
+  const MainSignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
