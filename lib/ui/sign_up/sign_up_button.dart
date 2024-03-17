@@ -7,9 +7,14 @@ import '../../data/source/ErrorHandler.dart';
 import '../../data/source/rest_client.dart';
 
 class SignUpButton extends StatelessWidget {
-  SignUpButton({super.key});
+  const SignUpButton({
+    required this.showSpinner,
+    required this.onSignUpPressed,
+    super.key,
+  });
 
-  final RestClient restClient = GetIt.instance<RestClient>();
+  final bool showSpinner;
+  final VoidCallback onSignUpPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +29,7 @@ class SignUpButton extends StatelessWidget {
           ),
         ),
 
-        onPressed: () async {
-          List<String> phoneNumber = ['010', '5678', '1234'];
-          var userModel = UserModel(
-              name: 'test1',
-              email: 'test1@email.com',
-              password: '123456',
-              passwordConfirm: '123456',
-              phoneNumber: phoneNumber);
-
-          try {
-            await restClient.createUser(userModel);
-          } catch (error) {
-            ErrorHandler.handle(error);
-          }
-        },
+        onPressed: !showSpinner ? onSignUpPressed : null,
 
         child: const Text(
           '가입하기',

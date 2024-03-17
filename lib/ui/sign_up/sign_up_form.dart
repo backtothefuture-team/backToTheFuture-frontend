@@ -13,7 +13,7 @@ class SignUpForm extends StatelessWidget {
     required this.userNickNameController,
     required this.userEmailController,
     required this.userPasswordController,
-    required this.onSignUpPressed,
+    required this.userPasswordConfirmController,
     super.key});
 
   final GlobalKey<FormState> formKey;
@@ -21,7 +21,7 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController userNickNameController;
   final TextEditingController userEmailController;
   final TextEditingController userPasswordController;
-  final VoidCallback onSignUpPressed;
+  final TextEditingController userPasswordConfirmController;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SignUpForm extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.9,
+          height: MediaQuery.of(context).size.height * 1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -73,7 +73,7 @@ class SignUpForm extends StatelessWidget {
 
                   // 비밀번호 확인
                   UserInfoTextFormField(
-                    controller: null,
+                    controller: userPasswordConfirmController,
                     validator: (value) => validateConfirmPassword(
                       value,
                       userPasswordController.text,
