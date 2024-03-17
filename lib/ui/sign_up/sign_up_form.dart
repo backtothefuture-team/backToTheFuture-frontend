@@ -10,7 +10,8 @@ import '../../config/inputValidation.dart';
 class SignUpForm extends StatelessWidget {
   SignUpForm({
     required this.formKey,
-    required this.userNameController,
+    required this.userNickNameController,
+    required this.userEmailController,
     required this.userPasswordController,
     required this.userMobileNumberController,
     required this.userResidenceController,
@@ -20,7 +21,8 @@ class SignUpForm extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
 
-  final TextEditingController userNameController;
+  final TextEditingController userNickNameController;
+  final TextEditingController userEmailController;
   final TextEditingController userPasswordController;
   final TextEditingController userMobileNumberController;
   final TextEditingController userResidenceController;
@@ -41,7 +43,7 @@ class SignUpForm extends StatelessWidget {
 
               // 이름
               UserInfoTextFormField(
-                controller: userNameController,
+                controller: userNickNameController,
                 validator: (value) => inputValidation(value, '이름'),
                 decorationLabelText: '이름',
               ),
