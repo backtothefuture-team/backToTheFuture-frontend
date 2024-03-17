@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rest_api_ex/config/gaps.dart';
-import 'package:rest_api_ex/config/my_validator.dart';
+import 'package:rest_api_ex/config/inputValidation.dart';
 import 'package:rest_api_ex/config/user_info_text_form_field.dart';
 
 import '../../config/palette.dart';
@@ -82,7 +82,7 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
                     isButtonEnabled: _isButtonEnabled == true ? true : false,
                     textInputType: TextInputType.emailAddress,
                     controller: _userEmailController,
-                    validator: (value) => myValidate(value, '이메일'),
+                    validator: (value) => inputValidation(value, '이메일'),
                     decorationLabelText: '',
                   ),
 

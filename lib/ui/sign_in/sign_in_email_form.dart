@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/gaps.dart';
-import '../../config/my_validator.dart';
+import '../../config/inputValidation.dart';
 import '../../config/navigate_to.dart';
 import '../../config/palette.dart';
 import '../../config/user_info_text_form_field.dart';
@@ -32,7 +32,7 @@ class SignInEmailForm extends StatelessWidget {
             // 이메일
             UserInfoTextFormField(
               controller: userEmailController,
-              validator: (value) => myValidate(value, '이메일'),
+              validator: (value) => inputValidation(value, '이메일'),
               decorationLabelText: '이메일을 입력해 주세요',
             ),
 
@@ -41,7 +41,7 @@ class SignInEmailForm extends StatelessWidget {
             // 비밀번호
             UserInfoTextFormField(
               controller: userPasswordController,
-              validator: (value) => myValidate(value, '비밀번호'),
+              validator: (value) => inputValidation(value, '비밀번호'),
               decorationLabelText: '비밀번호를 입력해 주세요',
             ),
 

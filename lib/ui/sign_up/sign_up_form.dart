@@ -5,7 +5,7 @@ import 'package:rest_api_ex/data/source/ErrorHandler.dart';
 import 'package:rest_api_ex/data/source/rest_client.dart';
 import 'package:rest_api_ex/config/user_info_text_form_field.dart';
 
-import '../../config/my_validator.dart';
+import '../../config/inputValidation.dart';
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({
@@ -42,7 +42,7 @@ class SignUpForm extends StatelessWidget {
               // 이름
               UserInfoTextFormField(
                 controller: userNameController,
-                validator: (value) => myValidate(value, '이름'),
+                validator: (value) => inputValidation(value, '이름'),
                 decorationLabelText: '이름',
               ),
 
@@ -50,7 +50,7 @@ class SignUpForm extends StatelessWidget {
               // 비밀번호
               UserInfoTextFormField(
                 controller: userPasswordController,
-                validator: (value) => myValidate(value, '비밀번호', minLength: 6),
+                validator: (value) => inputValidation(value, '비밀번호', minLength: 6),
                 decorationLabelText: '비밀번호',
               ),
 
@@ -58,7 +58,7 @@ class SignUpForm extends StatelessWidget {
               // 비밀번호 확인
               UserInfoTextFormField(
                 controller: null,
-                validator: (value) => myValidate(value, '비밀번호', confirmPassword: true),
+                validator: (value) => inputValidation(value, '비밀번호', confirmPassword: true),
                 decorationLabelText: '비밀번호 확인',
               ),
 
@@ -66,7 +66,7 @@ class SignUpForm extends StatelessWidget {
               // 휴대전화번호
               UserInfoTextFormField(
                 controller: userMobileNumberController,
-                validator: (value) => myValidate(value, '휴대전화번호'),
+                validator: (value) => inputValidation(value, '휴대전화번호'),
                 decorationLabelText: '휴대전화번호',
               ),
 
@@ -74,7 +74,7 @@ class SignUpForm extends StatelessWidget {
               // 거주지
               UserInfoTextFormField(
                 controller: userResidenceController,
-                validator: (value) => myValidate(value, '거주지'),
+                validator: (value) => inputValidation(value, '거주지'),
                 decorationLabelText: '거주지',
               ),
 
