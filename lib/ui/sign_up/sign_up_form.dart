@@ -3,7 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:rest_api_ex/data/model/user_model.dart';
 import 'package:rest_api_ex/data/source/ErrorHandler.dart';
 import 'package:rest_api_ex/data/source/rest_client.dart';
-import 'package:rest_api_ex/ui/sign_up/sign_up_text_form_field.dart';
+import 'package:rest_api_ex/config/user_info_text_form_field.dart';
+
+import '../../config/my_validator.dart';
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({
@@ -38,48 +40,48 @@ class SignUpForm extends StatelessWidget {
             children: [
 
               // 이름
-              SignUpTextFormField(
+              UserInfoTextFormField(
                 controller: userNameController,
-                validator: (value) => _validate(value, '이름'),
+                validator: (value) => myValidate(value, '이름'),
                 decorationLabelText: '이름',
               ),
 
 
               // 비밀번호
-              SignUpTextFormField(
+              UserInfoTextFormField(
                 controller: userPasswordController,
-                validator: (value) => _validate(value, '비밀번호', minLength: 6),
+                validator: (value) => myValidate(value, '비밀번호', minLength: 6),
                 decorationLabelText: '비밀번호',
               ),
 
 
               // 비밀번호 확인
-              SignUpTextFormField(
+              UserInfoTextFormField(
                 controller: null,
-                validator: (value) => _validate(value, '비밀번호', confirmPassword: true),
+                validator: (value) => myValidate(value, '비밀번호', confirmPassword: true),
                 decorationLabelText: '비밀번호 확인',
               ),
 
 
               // 휴대전화번호
-              SignUpTextFormField(
+              UserInfoTextFormField(
                 controller: userMobileNumberController,
-                validator: (value) => _validate(value, '휴대전화번호'),
+                validator: (value) => myValidate(value, '휴대전화번호'),
                 decorationLabelText: '휴대전화번호',
               ),
 
 
               // 거주지
-              SignUpTextFormField(
+              UserInfoTextFormField(
                 controller: userResidenceController,
-                validator: (value) => _validate(value, '거주지'),
+                validator: (value) => myValidate(value, '거주지'),
                 decorationLabelText: '거주지',
               ),
 
 
 
               // 프로모션 코드
-              SignUpTextFormField(
+              UserInfoTextFormField(
                 controller: promotionCodeController,
                 validator: (value) => null,
                 decorationLabelText: '프로모션 코드',
@@ -112,22 +114,4 @@ class SignUpForm extends StatelessWidget {
       )
     );
   }
-
-
-  String? _validate(String? value, String field, {int? minLength, bool confirmPassword = false}) {
-    if( value == null || value.isEmpty ) {
-      return '$field을(를) 입력해 주세요.';
-    }
-
-    if( minLength != null && value.length < minLength ) {
-      return '$field는 $minLength자리 이상 입력해 주세요.';
-    }
-
-    if( confirmPassword && value != userPasswordController.text ) {
-      return '비밀번호가 일치하지 않습니다.';
-    }
-
-    return null;
-  }
-
 }

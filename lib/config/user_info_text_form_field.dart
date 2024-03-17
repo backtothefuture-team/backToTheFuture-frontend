@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api_ex/config/palette.dart';
 
-class SignUpTextFormField extends StatelessWidget {
-  const SignUpTextFormField({
+class UserInfoTextFormField extends StatelessWidget {
+  const UserInfoTextFormField({
     super.key,
     required this.controller,
     required this.validator,
@@ -27,6 +28,11 @@ class SignUpTextFormField extends StatelessWidget {
       labelStyle: const TextStyle(
         color: Colors.black54,
       ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Palette.primaryColor
+        )
+      )
     );
   }
 }
