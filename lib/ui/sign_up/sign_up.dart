@@ -6,6 +6,8 @@ import 'package:rest_api_ex/ui/my_bottom_navigation.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up_button.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up_form.dart';
 
+import '../../data/model/user_model.dart';
+import '../../data/source/ErrorHandler.dart';
 import '../../data/source/rest_client.dart';
 
 class SignUp extends StatefulWidget {
@@ -80,27 +82,29 @@ class _SignUpState extends State<SignUp> {
   }
 
 
-  _handleSignUpPressed() {
+  void _handleSignUpPressed() async {
     _tryValidation();
 
     setState(() {
       showSpinner = true;
     });
 
-    // List<String> phoneNumber = ['010', '5678', '1234'];
-    // var userModel = UserModel(
-    //     name: 'test1',
-    //     email: 'test1@email.com',
-    //     password: '123456',
-    //     passwordConfirm: '123456',
-    //     phoneNumber: phoneNumber);
-    //
-    // try {
-    //   await restClient.createUser(userModel);
-    // } catch (error) {
-    //   ErrorHandler.handle(error);
-    // }
-    navigatePushAndRemoveUtilTo(context, const MyBottomNavigation());
+    List<String> phoneNumber = ['010', '1234', '5678'];
+    var userModel = UserModel(
+        name: 'test1',
+        email: 'test1@email.com',
+        password: '123456',
+        passwordConfirm: '123456',
+        phoneNumber: phoneNumber);
+
+    try {
+      await restClient.createUser(userModel);
+
+    } catch (error) {
+
+      print(ErrorHandler.handle(error).failure);
+    }
+    // navigatePushAndRemoveUtilTo(context, const MyBottomNavigation());
 
     setState(() {
       showSpinner = false;
