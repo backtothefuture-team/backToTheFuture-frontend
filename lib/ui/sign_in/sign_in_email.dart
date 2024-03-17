@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rest_api_ex/config/gaps.dart';
 import 'package:rest_api_ex/ui/sign_in/sign_in_email_form.dart';
+import 'package:rest_api_ex/ui/sign_up/sign_up.dart';
+
+import '../../config/navigate_to.dart';
 
 class EmailSignIn extends StatefulWidget {
   const EmailSignIn({super.key});
@@ -56,14 +59,25 @@ class _EmailSignInState extends State<EmailSignIn> {
                 Gaps.gapW15,
                 Text(' | '),
                 Gaps.gapW15,
-                Text(
-                  '회원가입',
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
+                // 회원가입 버튼
+                signUpButton(context),
               ],
             )
           ],
         ),
+      ),
+    );
+  }
+
+  // 회원가입 버튼
+  Widget signUpButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        navigateTo(context, const SignUp());
+      },
+      child: const Text(
+        '회원가입',
+        style: TextStyle(decoration: TextDecoration.underline),
       ),
     );
   }
