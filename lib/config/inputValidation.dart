@@ -34,6 +34,9 @@ String? validateEmail(String? value) {
 
 }
 
+String? validateAuthCode(String? value) =>
+    value == null || value.isEmpty || value.length != 6 ? '인증 코드는 6자리 입니다.' : null;
+
 String? validateNickName(String? value) =>
     value == '' ? '닉네임을 입력해 주세요.' : null;
 
