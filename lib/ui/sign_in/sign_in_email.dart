@@ -5,6 +5,7 @@ import 'package:rest_api_ex/ui/sign_in/sign_in_email_form.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up.dart';
 
 import '../../config/navigate_to.dart';
+import '../sign_up/email_auth_request.dart';
 
 class EmailSignIn extends StatefulWidget {
   const EmailSignIn({super.key});
@@ -73,7 +74,7 @@ class _EmailSignInState extends State<EmailSignIn> {
   Widget signUpButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        navigateTo(context, const SignUp());
+        navigateTo(context, const EmailAuthRequest());
       },
       child: const Text(
         '회원가입',
