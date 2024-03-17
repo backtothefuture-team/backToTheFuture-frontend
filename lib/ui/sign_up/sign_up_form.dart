@@ -13,9 +13,6 @@ class SignUpForm extends StatelessWidget {
     required this.userNickNameController,
     required this.userEmailController,
     required this.userPasswordController,
-    required this.userMobileNumberController,
-    required this.userResidenceController,
-    required this.promotionCodeController,
     required this.onSignUpPressed,
     super.key});
 
@@ -24,9 +21,6 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController userNickNameController;
   final TextEditingController userEmailController;
   final TextEditingController userPasswordController;
-  final TextEditingController userMobileNumberController;
-  final TextEditingController userResidenceController;
-  final TextEditingController promotionCodeController;
   final VoidCallback onSignUpPressed;
 
   @override
@@ -65,20 +59,14 @@ class SignUpForm extends StatelessWidget {
               // 비밀번호
               Column(
                 children: [
-                  const Row(
-                    children: [
-                      Text('비밀번호'),
-                      Text('*', style: TextStyle(color: Colors.red)),
-                    ],
-                  ),
-
-                  Gaps.gapH5,
-
-                  // 비밀번호
-                  UserInfoTextFormField(
-                    controller: userPasswordController,
-                    validator: validatePassword,
-                    decorationLabelText: '비밀번호',
+                  _buildTextFormField(
+                    '비밀번호',
+                    true,
+                    UserInfoTextFormField(
+                      controller: userPasswordController,
+                      validator: validatePassword,
+                      decorationLabelText: '비밀번호',
+                    ),
                   ),
 
                   Gaps.gapH10,
@@ -87,28 +75,23 @@ class SignUpForm extends StatelessWidget {
                   UserInfoTextFormField(
                     controller: null,
                     validator: (value) => validateConfirmPassword(
-                        value, userPasswordController.text),
+                      value,
+                      userPasswordController.text,
+                    ),
                     decorationLabelText: '비밀번호 확인',
-                  ),
+                  )
                 ],
               ),
 
               // 닉네임
-              Column(
-                children: [
-                  const Row(
-                    children: [
-                      Text('닉네임'),
-                      Text('*', style: TextStyle(color: Colors.red)),
-                    ],
-                  ),
-                  Gaps.gapH5,
-                  UserInfoTextFormField(
-                    controller: userNickNameController,
-                    validator: validateNickName,
-                    decorationLabelText: '닉네임을 입력해 주세요',
-                  ),
-                ],
+              _buildTextFormField(
+                '닉네임',
+                true,
+                UserInfoTextFormField(
+                  controller: userNickNameController,
+                  validator: validateNickName,
+                  decorationLabelText: '닉네임을 입력해 주세요',
+                ),
               ),
 
               // 이용약관 동의
@@ -117,6 +100,24 @@ class SignUpForm extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextFormField(String label, bool isNecessary,
+      UserInfoTextFormField userInfoTextFormField) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(label),
+            isNecessary
+                ? const Text('*', style: TextStyle(color: Colors.red))
+                : const Text(''),
+          ],
+        ),
+        Gaps.gapH5,
+        userInfoTextFormField
+      ],
     );
   }
 }

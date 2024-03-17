@@ -62,9 +62,6 @@ class _SignUpState extends State<SignUp> {
                   userNickNameController: userNickNameController,
                   userEmailController: userEmailController,
                   userPasswordController: userPasswordController,
-                  userMobileNumberController: userMobileNumberController,
-                  userResidenceController: userResidenceController,
-                  promotionCodeController: promotionCodeController,
 
                   onSignUpPressed: () {
                     _tryValidation();
