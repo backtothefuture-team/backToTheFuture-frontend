@@ -82,7 +82,7 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
                     isButtonEnabled: _isButtonEnabled == true ? true : false,
                     textInputType: TextInputType.emailAddress,
                     controller: _userEmailController,
-                    validator: (value) => inputValidation(value, '이메일'),
+                    validator: validateEmail,
                     decorationLabelText: '',
                   ),
 
@@ -124,13 +124,15 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor:
-            _isButtonEnabled ? Palette.primaryColor : Palette.disabledColor,
+        _isButtonEnabled ? Palette.primaryColor : Palette.disabledColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
       ),
 
-      onPressed: () {},
+      onPressed: () {
+        // navigateTo(context, const EmailAuthCheck());
+      },
 
       child: const Text(
         '이메일 인증 요청',
