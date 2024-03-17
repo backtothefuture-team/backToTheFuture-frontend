@@ -133,7 +133,9 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
       ),
 
       onPressed: () {
-        navigateTo(context, const EmailAuthCheck());
+        _tryValidation();
+
+        // navigateTo(context, const EmailAuthCheck());
       },
 
       child: const Text(
