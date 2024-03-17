@@ -32,7 +32,7 @@ class SignInEmailForm extends StatelessWidget {
             // 이메일
             UserInfoTextFormField(
               controller: userEmailController,
-              validator: (value) => inputValidation(value, '이메일'),
+              validator: validateEmail,
               decorationLabelText: '이메일을 입력해 주세요',
             ),
 
@@ -41,7 +41,7 @@ class SignInEmailForm extends StatelessWidget {
             // 비밀번호
             UserInfoTextFormField(
               controller: userPasswordController,
-              validator: (value) => inputValidation(value, '비밀번호'),
+              validator: validatePassword,
               decorationLabelText: '비밀번호를 입력해 주세요',
             ),
 
