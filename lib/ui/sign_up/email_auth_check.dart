@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:rest_api_ex/config/gaps.dart';
 import 'package:rest_api_ex/config/inputValidation.dart';
+import 'package:rest_api_ex/config/navigate_to.dart';
 import 'package:rest_api_ex/config/user_info_text_form_field.dart';
 
-import '../../config/navigate_to.dart';
 import '../../config/palette.dart';
-import 'email_auth_check.dart';
+import 'sign_up.dart';
 
-class EmailAuthRequest extends StatefulWidget {
-  const EmailAuthRequest({super.key});
+class EmailAuthCheck extends StatefulWidget {
+  const EmailAuthCheck({super.key});
 
   @override
-  State<EmailAuthRequest> createState() => _EmailAuthRequestState();
+  State<EmailAuthCheck> createState() => _EmailAuthCheckState();
 }
 
-class _EmailAuthRequestState extends State<EmailAuthRequest> {
+class _EmailAuthCheckState extends State<EmailAuthCheck> {
   bool showSpinner = false;
   bool _isButtonEnabled = false;
   final formKey = GlobalKey<FormState>();
-  final _userEmailController = TextEditingController();
+  final _authCodeController = TextEditingController();
 
   // 유효성 검사
   void _tryValidation() {
@@ -30,31 +29,27 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
     }
   }
 
-
   @override
   void initState() {
     super.initState();
 
     // 텍스트 길이에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
     // 함수를 호출하는 게 아니라, 콜백으로 전달하기 때문에 괄호를 사용하지 않는다.
-    _userEmailController.addListener(_updateButtonState);
+    _authCodeController.addListener(_updateButtonState);
   }
-
 
   @override
   void dispose() {
     super.dispose();
-    _userEmailController.dispose();
+    _authCodeController.dispose();
   }
-
 
   // 텍스트 길이에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
   void _updateButtonState() {
     setState(() {
-      _isButtonEnabled = _userEmailController.text.length > 5;
+      _isButtonEnabled = _authCodeController.text.length > 5;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +57,10 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
       appBar: AppBar(
         title: Text('회원가입'),
       ),
-
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.5,
           child: Form(
             key: formKey,
             child: Padding(
@@ -75,21 +69,24 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+
                   // 설명 문구,
                   description(),
 
-                  // 이메일 입력
+                  // 인증 코드 입력
                   UserInfoTextFormField(
-                    autoFocus: true,
                     isButtonEnabled: _isButtonEnabled == true ? true : false,
-                    textInputType: TextInputType.emailAddress,
-                    controller: _userEmailController,
+                    textInputType: TextInputType.number,
+                    controller: _authCodeController,
                     validator: validateEmail,
-                    decorationLabelText: '',
+                    decorationLabelText: '코드 6자리 입력',
                   ),
 
                   // 이메일 인증 요청 버튼
-                  emailAuthRequestButton(context, _isButtonEnabled)
+                  emailAuthRequestButton(context, _isButtonEnabled),
+
+                  // 코드 재전송
+                  resendCode(),
                 ],
               ),
             ),
@@ -105,17 +102,23 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '이메일을 입력해 주세요',
+          '이메일 인증하기',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),
 
-        Gaps.gapH10,
+        // 사용자가 입력한 이메일 주소
         Text(
-          '인증 코드를 보내드려요',
-          style: TextStyle(fontSize: 17.0,),
+          'test@email.com',
+          style: TextStyle(fontSize: 17.0, color: Palette.primaryColor),
+        ),
+        Text(
+          '위 메일로 보내드린 인증 코드를 입력해 주세요.',
+          style: TextStyle(
+            fontSize: 17.0,
+          ),
         )
       ],
     );
@@ -131,17 +134,51 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
           borderRadius: BorderRadius.circular(4.0),
         ),
       ),
-
       onPressed: () {
-        navigateTo(context, const EmailAuthCheck());
+        navigateTo(context, const SignUp());
       },
-
       child: const Text(
-        '이메일 인증 요청',
+        '이메일 인증하기',
         style: TextStyle(
           color: Palette.whiteTextColor,
         ),
       ),
+    );
+  }
+
+  // 인증 코드 재전송
+  Widget resendCode() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          '메일이 오지 않았다면 스팸 메일함을 확인하거나',
+          style: TextStyle(
+            color: Palette.disabledColor,
+          ),
+        ),
+
+        Row(
+          children: [
+            const Text(
+              '코드 재전송을 요청하세요.',
+              style: TextStyle(
+                color: Palette.disabledColor,
+              ),
+            ),
+
+            GestureDetector(
+              onTap: (){},
+              child: const Text(
+                '인증 코드 재전송',
+                style: TextStyle(
+                    decoration: TextDecoration.underline
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
