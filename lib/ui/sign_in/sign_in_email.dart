@@ -44,27 +44,29 @@ class _EmailSignInState extends State<EmailSignIn> {
       ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
-        child: Column(
-          children: [
-            // 이메일 입력 폼, 비밀번호 입력 폼, 로그인 버튼
-            SignInEmailForm(
-              formKey: formKey,
-              userEmailController: userEmailController,
-              userPasswordController: userPasswordController,
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // 이메일 입력 폼, 비밀번호 입력 폼, 로그인 버튼
+              SignInEmailForm(
+                formKey: formKey,
+                userEmailController: userEmailController,
+                userPasswordController: userPasswordController,
+              ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('비밀번호 찾기'),
-                Gaps.gapW15,
-                Text(' | '),
-                Gaps.gapW15,
-                // 회원가입 버튼
-                signUpButton(context),
-              ],
-            )
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('비밀번호 찾기'),
+                  Gaps.gapW15,
+                  Text(' | '),
+                  Gaps.gapW15,
+                  // 회원가입 버튼
+                  signUpButton(context),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

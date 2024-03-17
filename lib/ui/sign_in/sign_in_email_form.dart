@@ -55,18 +55,41 @@ class SignInEmailForm extends StatelessWidget {
     );
   }
 
+  // 유효성 검사
+  void _tryValidation() {
+    final isValid = formKey.currentState!.validate();
+
+    if( isValid ) {
+      print("valid");
+      formKey.currentState!.save();
+    }
+  }
+
   // 로그인 버튼
   Widget signInButton(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           backgroundColor: Palette.primaryColor,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4.0)
-          )
+              borderRadius: BorderRadius.circular(4.0),
+          ),
       ),
 
       onPressed: () {
-        navigatePushAndRemoveUtilTo(context, const MyBottomNavigation());
+
+        // 유효성 검사
+        _tryValidation();
+
+        try {
+
+          print('userEmail > ${userEmailController.text}');
+          print('userPassword > ${userPasswordController.text}');
+
+          navigatePushAndRemoveUtilTo(context, const MyBottomNavigation());
+
+        } catch(error) {
+          print('로그인 에러 > $error');
+        }
       },
 
       child: const Text(

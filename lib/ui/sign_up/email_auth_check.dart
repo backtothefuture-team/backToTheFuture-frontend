@@ -19,6 +19,8 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
   bool _isButtonEnabled = false;
   final formKey = GlobalKey<FormState>();
   final _authCodeController = TextEditingController();
+  final int authCodeLength = 6;
+
 
   // 유효성 검사
   void _tryValidation() {
@@ -28,6 +30,7 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
       formKey.currentState!.save();
     }
   }
+
 
   @override
   void initState() {
@@ -47,7 +50,11 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
   // 텍스트 길이에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
   void _updateButtonState() {
     setState(() {
-      _isButtonEnabled = _authCodeController.text.length > 5;
+      if( _authCodeController.text.length == authCodeLength ) {
+        _isButtonEnabled = true;
+      } else {
+        _isButtonEnabled = false;
+      }
     });
   }
 
@@ -75,14 +82,15 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
 
                   // 인증 코드 입력
                   UserInfoTextFormField(
+                    autoFocus: true,
                     isButtonEnabled: _isButtonEnabled == true ? true : false,
                     textInputType: TextInputType.number,
                     controller: _authCodeController,
-                    validator: validateEmail,
+                    validator: validateAuthCode,
                     decorationLabelText: '코드 6자리 입력',
                   ),
 
-                  // 이메일 인증 요청 버튼
+                  // 이메일 인증하기 버튼
                   emailAuthRequestButton(context, _isButtonEnabled),
 
                   // 코드 재전송
@@ -124,7 +132,7 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
     );
   }
 
-  // 이메일 인증 요청 버튼
+  // 이메일 인증하기 버튼
   Widget emailAuthRequestButton(BuildContext context, bool buttonEnabled) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -135,6 +143,8 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
         ),
       ),
       onPressed: () {
+        _tryValidation();
+
         navigateTo(context, const SignUp());
       },
       child: const Text(
