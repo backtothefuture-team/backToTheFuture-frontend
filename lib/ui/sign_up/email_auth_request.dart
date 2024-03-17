@@ -35,7 +35,7 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
   void initState() {
     super.initState();
 
-    // 텍스트 길이에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
+    // 이메일 유효성 검사에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
     // 함수를 호출하는 게 아니라, 콜백으로 전달하기 때문에 괄호를 사용하지 않는다.
     _userEmailController.addListener(_updateButtonState);
   }
@@ -48,10 +48,15 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
   }
 
 
-  // 텍스트 길이에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
+  // 이메일 유효성 검사에 따라 버튼 색상 활성화를 하기 위한 콜백 함수
   void _updateButtonState() {
     setState(() {
-      _isButtonEnabled = _userEmailController.text.length > 5;
+
+      if( validateEmail(_userEmailController.text) == null ) {
+        _isButtonEnabled = true;
+      } else {
+        _isButtonEnabled = false;
+      }
     });
   }
 
@@ -135,7 +140,7 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
       onPressed: () {
         _tryValidation();
 
-        // navigateTo(context, const EmailAuthCheck());
+        navigateTo(context, const EmailAuthCheck());
       },
 
       child: const Text(
