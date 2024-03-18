@@ -89,23 +89,32 @@ class _SignUpState extends State<SignUp> {
       showSpinner = true;
     });
 
-    List<String> phoneNumber = ['010', '1234', '5678'];
+    List<String> phoneNumber = ['010', '1616', '1616'];
     var userModel = UserModel(
-        name: 'test1',
-        email: 'test1@email.com',
+        name: 'test16',
+        email: 'test16@email.com',
         password: '123456',
         passwordConfirm: '123456',
         phoneNumber: phoneNumber);
 
     try {
-      await restClient.createUser(userModel);
+      await restClient.createUser(userModel.toJson());
+
+      if( mounted ) {
+        navigatePushAndRemoveUtilTo(context, const MyBottomNavigation());
+      }
 
     } catch (error) {
+      final errorMessage = ErrorHandler.handle(error).failure;
 
-      print(ErrorHandler.handle(error).failure);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(errorMessage),
+          ),
+        );
+      }
     }
-    // navigatePushAndRemoveUtilTo(context, const MyBottomNavigation());
-
     setState(() {
       showSpinner = false;
     });

@@ -16,5 +16,5 @@ abstract class RestClient {
   Future<UserModel> getUser({@Path() required int id});
 
   @POST('/member/register')
-  Future<UserModel> createUser(@Body() UserModel body);
+  Future<void> createUser(@Body() Map<String, dynamic> body);
 }

@@ -21,6 +21,9 @@ class ErrorHandler implements Exception {
       } else {
         print('그 외 에러');
       }
+    } else {
+      failure = 'default';
+      print('default error > $error');
     }
   }
 }
