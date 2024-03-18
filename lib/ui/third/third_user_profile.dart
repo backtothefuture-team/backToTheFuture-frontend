@@ -11,7 +11,6 @@ class UserProfile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20.0),
       height: MediaQuery.of(context).size.height * 0.4,
-      color: Colors.amberAccent,
       child: Center(
         child: Column(
           children: [
@@ -47,11 +46,18 @@ class UserProfile extends StatelessWidget {
         Gaps.gapH10,
 
         // 이름
-        Text(
-          '김창영 님',
-          style: TextStyle(
-              fontSize: 20.0
-          ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '김창영 님',
+              style: TextStyle(
+                fontSize: 20.0
+              ),
+            ),
+
+            Icon(Icons.navigate_next)
+          ],
         )
       ],
     );

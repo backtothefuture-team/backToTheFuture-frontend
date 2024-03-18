@@ -14,6 +14,7 @@ class ThirdPages extends StatelessWidget {
         child: Column(
           children: [
             UserProfile(),
+            Divider(color: Colors.grey,),
             RecentOrderList(),
             Divider(color: Colors.grey,),
             MenuList(),
