@@ -73,18 +73,23 @@ class _UserProfileImageState extends State<UserProfileImage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                onPressed: () {
-                  _pickedImage(ImageSource.camera);
-                },
-                icon: Icon(Icons.camera_alt_outlined),
-              ),
+              // 앨범에서 사진 선택
               IconButton(
                 onPressed: () {
                   _pickedImage(ImageSource.gallery);
                 },
                 icon: Icon(Icons.photo_library),
               ),
+
+              // 기본 이미지로 변경
+              TextButton(
+                onPressed: (){
+                  setState(() {
+                    _imageFile = null;
+                  });
+                },
+                child: Text('기본 이미지로 변경')
+              )
             ],
           ),
         ],

@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'user_profile_image.dart';
 
 class UserProfileDetail extends StatelessWidget {
   const UserProfileDetail({super.key});
@@ -10,24 +13,37 @@ class UserProfileDetail extends StatelessWidget {
       appBar: AppBar(
         title: Text('프로필 설정'),
       ),
-      body: Column(
-        children: [
-          // 사용자 이름
-          TextFormField(
-            maxLength: 15,
-            decoration: const InputDecoration(
-              hintText: '김창영',
-              hintStyle: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            // 프로필 사진
+            const UserProfileImage(),
 
-          _buildUserInfoTextButton('생년월일', userInfo: '1990.08.28'),
-          _buildUserInfoTextButton('성별'),
-          _buildUserInfoTextButton('거주지'),
-          Text('연동된 소셜 계정'),
-          Divider(color: Colors.grey,),
-          
-        ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  // 사용자 이름
+                  TextFormField(
+                    maxLength: 15,
+                    decoration: const InputDecoration(
+                      hintText: '김창영',
+                      hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+
+                  _buildUserInfoTextButton('생년월일', userInfo: '1990.08.28'),
+                  _buildUserInfoTextButton('성별'),
+                  _buildUserInfoTextButton('거주지'),
+                  Text('연동된 소셜 계정'),
+                  Divider(color: Colors.grey,),
+
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
