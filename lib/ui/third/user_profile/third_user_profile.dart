@@ -40,7 +40,13 @@ class UserProfile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 프로필 사진
-        const UserProfileImage(),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(125),
+          child: Image.asset(
+            'assets/images/btf_logo.png',
+            width: MediaQuery.of(context).size.width * 0.3,
+          ),
+        ),
 
         Gaps.gapH10,
 
