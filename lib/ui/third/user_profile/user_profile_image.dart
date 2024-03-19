@@ -16,65 +16,58 @@ class _UserProfileImageState extends State<UserProfileImage> {
 
   @override
   Widget build(BuildContext context) {
-    final imageSize = MediaQuery.of(context).size.width * 0.2;
+    final imageSize = MediaQuery.of(context).size.width * 0.3;
 
     return Column(
-      children: [profileImage(context, imageSize)],
+      children: [
+        Stack(
+          children: [
+            Container(
+              constraints: BoxConstraints(
+                minWidth: imageSize,
+                minHeight: imageSize,
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: setImage(_imageFile, imageSize),
+              ),
+            ),
+
+            Positioned(
+              right: MediaQuery.of(context).size.width * 0.3,
+              bottom: 10,
+              child: InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: ((builder) => bottomSheet(context)),
+                  );
+                },
+                child: Icon(Icons.camera_alt),
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 
-  Widget profileImage(BuildContext context, double imageSize) {
-    return Container(
-      child: Stack(
-        children: [
-          if (_imageFile == null)
-            Container(
-              constraints: BoxConstraints(
-                minWidth: imageSize,
-                minHeight: imageSize,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/btf_logo.png'),
-                ),
-              ),
-            )
-          else
-            Container(
-              constraints: BoxConstraints(
-                minWidth: imageSize,
-                minHeight: imageSize,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: FileImage(File(_imageFile!.path)),
-                ),
-              ),
-            ),
+  DecorationImage setImage(XFile? _imageFile, double imageSize) {
+    if( _imageFile == null ) {
+     return const DecorationImage(
+       image: AssetImage('assets/images/btf_logo.png'),
+     );
 
-          Positioned(
-            right: 20,
-            bottom: 20,
-            child: InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: ((builder) => bottomSheet(context)),
-                );
-              },
-              child: Icon(Icons.camera_alt),
-            ),
-          )
-        ],
-      ),
-    );
+    } else {
+      return DecorationImage(
+        image: FileImage(File(_imageFile.path)),
+      );
+    }
   }
 
   Widget bottomSheet(BuildContext context) {
-    return Container(
-      height: 150,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.3,
       child: Column(
         children: [
           Row(

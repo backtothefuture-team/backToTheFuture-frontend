@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rest_api_ex/config/gaps.dart';
 import 'package:rest_api_ex/config/navigate_to.dart';
-import 'package:rest_api_ex/ui/third/user_profile_detail.dart';
 
+import 'user_profile_detail.dart';
 import 'user_profile_image.dart';
+
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
@@ -39,14 +40,7 @@ class UserProfile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 프로필 사진
-        // ClipRRect(
-        //   borderRadius: BorderRadius.circular(125),
-        //   child: Image.asset(
-        //     'assets/images/sample2.png',
-        //     width: MediaQuery.of(context).size.width * 0.3,
-        //   ),
-        // ),
-        UserProfileImage(),
+        const UserProfileImage(),
 
         Gaps.gapH10,
 
