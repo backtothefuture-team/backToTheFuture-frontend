@@ -16,7 +16,7 @@ Future<void> initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
   // runApp() 호출 전 Flutter SDK 초기화
   KakaoSdk.init(
+    // 네이티브 앱만 서비스
     nativeAppKey: '81744e25b42accb8e343708484a15cda',
-    javaScriptAppKey: '80398c7b09ada91d124f99e1503edfa2',
   );
 }
