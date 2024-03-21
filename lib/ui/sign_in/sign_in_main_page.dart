@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:rest_api_ex/config/gaps.dart';
+import 'package:rest_api_ex/ui/sign_in/sign_in_kakao.dart';
 
-import '../sign_up/sign_up.dart';
+import '../../config/social_sign_in.dart';
 import 'sign_in_email.dart';
 
 class MainSignInPage extends StatelessWidget {
@@ -18,17 +18,8 @@ class MainSignInPage extends StatelessWidget {
             // 로고와 인사말
             signInTitle(),
 
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
-                  print('카카오톡으로 로그인 성공 ${token.accessToken}');
-                } catch (error) {
-                  print('카카오톡으로 로그인 실패 $error');
-                }
-              },
-              child: Text('카카오 로그인')
-            ),
+            // 카카오톡 로그인 버튼
+            kakaoSignInButton(),
 
             // 이메일 로그인 버튼
             emailSignInButton(context),
@@ -53,6 +44,16 @@ class MainSignInPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  // 카카오톡 로그인
+  Widget kakaoSignInButton() {
+    return ElevatedButton(
+      onPressed: () async {
+        kakaoTalkSignInProcess();
+      },
+      child: Text('카카오톡 로그인'),
     );
   }
 
