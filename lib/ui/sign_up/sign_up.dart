@@ -3,9 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rest_api_ex/config/navigate_to.dart';
 import 'package:rest_api_ex/ui/my_bottom_navigation.dart';
-import 'package:rest_api_ex/ui/sign_up/sign_up_button.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up_form.dart';
 
+import '../../config/palette.dart';
 import '../../data/model/user_model.dart';
 import '../../data/source/ErrorHandler.dart';
 import '../../data/source/rest_client.dart';
@@ -64,9 +64,28 @@ class _SignUpState extends State<SignUp> {
           )
       ),
 
-      bottomNavigationBar: SignUpButton(
-        showSpinner: showSpinner,
-        onSignUpPressed: _handleSignUpPressed,
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(15.0),
+            backgroundColor: Palette.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4.0),
+            ),
+          ),
+
+          onPressed: () async {
+            await _handleSignUpPressed();
+            },
+
+          child: const Text(
+            '가입하기',
+            style: TextStyle(
+                color: Colors.white
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -82,7 +101,7 @@ class _SignUpState extends State<SignUp> {
   }
 
 
-  void _handleSignUpPressed() async {
+  Future<void> _handleSignUpPressed() async {
     _tryValidation();
 
     setState(() {
