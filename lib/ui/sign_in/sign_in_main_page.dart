@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:rest_api_ex/config/gaps.dart';
-import 'package:rest_api_ex/ui/sign_in/sign_in_kakao.dart';
 
 import '../../config/social_sign_in.dart';
+import '../../data/source/rest_client.dart';
 import 'sign_in_email.dart';
 
 class MainSignInPage extends StatelessWidget {
-  const MainSignInPage({super.key});
+  MainSignInPage({super.key});
+
+  final RestClient restClient = GetIt.instance<RestClient>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class MainSignInPage extends StatelessWidget {
   Widget kakaoSignInButton() {
     return ElevatedButton(
       onPressed: () async {
-        kakaoTalkSignInProcess();
+        kakaoTalkSignInProcess(restClient);
       },
       child: Text('카카오톡 로그인'),
     );

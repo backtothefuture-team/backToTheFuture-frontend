@@ -1,8 +1,12 @@
 
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:rest_api_ex/data/model/oauth_model.dart';
+import 'package:rest_api_ex/data/source/rest_client.dart';
 
-void kakaoTalkSignInProcess() async {
+import '../data/source/ErrorHandler.dart';
+
+void kakaoTalkSignInProcess(RestClient restClient) async {
   // 카카오 실행 가능 여부 확인
   if (await isKakaoTalkInstalled()) {
     try {
@@ -30,10 +34,23 @@ void kakaoTalkSignInProcess() async {
 
   } else {
     try {
-      await UserApi.instance.loginWithKakaoTalk();
+      OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
+      print('카카오톡으로 로그인 성공 ${token.accessToken}');
+
+      final oauthModel = OAuthModel(
+        authorization: "authorization",
+        providerType: "providerType",
+        rolesType: "rolesType",
+        state: "state",
+      );
+      await restClient.oauthLogin(oauthModel.toJson());
+
+      // todo: 회원정보 가져오기
       print('로그인');
     } catch (error) {
       print('카카오톡으로 로그인 실패 $error');
+      ErrorHandler.handle(error).failure;
+
     }
   }
 }

@@ -10,7 +10,7 @@ class SignOut extends StatelessWidget {
       onTap: (){
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const MainSignInPage()
+            MaterialPageRoute(builder: (context) => MainSignInPage()
         ));
       },
 
