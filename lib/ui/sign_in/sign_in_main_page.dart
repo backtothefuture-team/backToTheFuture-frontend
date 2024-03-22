@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:rest_api_ex/config/gaps.dart';
 
-import '../sign_up/sign_up.dart';
+import '../../config/social_sign_in.dart';
+import '../../data/source/rest_client.dart';
 import 'sign_in_email.dart';
 
 class MainSignInPage extends StatelessWidget {
-  const MainSignInPage({super.key});
+  MainSignInPage({super.key});
+
+  final RestClient restClient = GetIt.instance<RestClient>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +20,9 @@ class MainSignInPage extends StatelessWidget {
           children: [
             // 로고와 인사말
             signInTitle(),
+
+            // 카카오톡 로그인 버튼
+            kakaoSignInButton(),
 
             // 이메일 로그인 버튼
             emailSignInButton(context),
@@ -40,6 +47,16 @@ class MainSignInPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  // 카카오톡 로그인
+  Widget kakaoSignInButton() {
+    return ElevatedButton(
+      onPressed: () async {
+        kakaoTalkSignInProcess(restClient);
+      },
+      child: Text('카카오톡 로그인'),
     );
   }
 

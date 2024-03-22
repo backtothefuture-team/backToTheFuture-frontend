@@ -19,7 +19,7 @@ class ErrorHandler implements Exception {
           // ...
         }
       } else {
-        print('그 외 에러');
+        failure = '그 외 에러 : $error';
       }
     } else {
       failure = 'default';
