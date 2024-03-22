@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:rest_api_ex/config/validationCheck.dart';
 import 'package:rest_api_ex/config/navigate_to.dart';
 import 'package:rest_api_ex/ui/my_bottom_navigation.dart';
 import 'package:rest_api_ex/ui/sign_up/sign_up_form.dart';
@@ -91,18 +92,11 @@ class _SignUpState extends State<SignUp> {
   }
 
 
-  // 유효성 검사
-  void _tryValidation() {
-    final isValid = formKey.currentState!.validate();
 
-    if( isValid ) {
-      formKey.currentState!.save();
-    }
-  }
 
 
   Future<void> _handleSignUpPressed() async {
-    _tryValidation();
+    ValidationCheck().allUserInputValidation(formKey);
 
     setState(() {
       showSpinner = true;

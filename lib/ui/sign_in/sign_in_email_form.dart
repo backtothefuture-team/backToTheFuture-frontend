@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/gaps.dart';
-import '../../config/inputValidation.dart';
+import '../../config/validationCheck.dart';
 import '../../config/navigate_to.dart';
 import '../../config/palette.dart';
 import '../../config/user_info_text_form_field.dart';
@@ -55,15 +55,6 @@ class SignInEmailForm extends StatelessWidget {
     );
   }
 
-  // 유효성 검사
-  void _tryValidation() {
-    final isValid = formKey.currentState!.validate();
-
-    if( isValid ) {
-      print("valid");
-      formKey.currentState!.save();
-    }
-  }
 
   // 로그인 버튼
   Widget signInButton(BuildContext context) {
@@ -77,8 +68,7 @@ class SignInEmailForm extends StatelessWidget {
 
       onPressed: () {
 
-        // 유효성 검사
-        _tryValidation();
+        ValidationCheck().allUserInputValidation(formKey);
 
         try {
 

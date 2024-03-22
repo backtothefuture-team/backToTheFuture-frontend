@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rest_api_ex/config/gaps.dart';
 import 'package:rest_api_ex/ui/sign_in/sign_in_email_form.dart';
-import 'package:rest_api_ex/ui/sign_up/sign_up.dart';
+import 'package:rest_api_ex/ui/sign_up/sign_up_page.dart';
 
 import '../../config/navigate_to.dart';
 import '../sign_up/email_auth_request.dart';
@@ -20,14 +20,6 @@ class _EmailSignInState extends State<EmailSignIn> {
   final userEmailController = TextEditingController();
   final userPasswordController = TextEditingController();
 
-  // 유효성 검사
-  void _tryValidation() {
-    final isValid = formKey.currentState!.validate();
-
-    if (isValid) {
-      formKey.currentState!.save();
-    }
-  }
 
   @override
   void dispose() {

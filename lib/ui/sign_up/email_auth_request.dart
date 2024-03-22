@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rest_api_ex/config/gaps.dart';
-import 'package:rest_api_ex/config/inputValidation.dart';
+import 'package:rest_api_ex/config/validationCheck.dart';
 import 'package:rest_api_ex/config/user_info_text_form_field.dart';
 
 import '../../config/navigate_to.dart';
@@ -20,15 +20,6 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
   bool _isButtonEnabled = false;
   final formKey = GlobalKey<FormState>();
   final _userEmailController = TextEditingController();
-
-  // 유효성 검사
-  void _tryValidation() {
-    final isValid = formKey.currentState!.validate();
-
-    if (isValid) {
-      formKey.currentState!.save();
-    }
-  }
 
 
   @override
@@ -138,7 +129,7 @@ class _EmailAuthRequestState extends State<EmailAuthRequest> {
       ),
 
       onPressed: () {
-        _tryValidation();
+        ValidationCheck().allUserInputValidation(formKey);
 
         navigateTo(context, const EmailAuthCheck());
       },

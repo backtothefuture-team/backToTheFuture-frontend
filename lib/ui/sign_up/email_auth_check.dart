@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:rest_api_ex/config/inputValidation.dart';
+import 'package:rest_api_ex/config/validationCheck.dart';
 import 'package:rest_api_ex/config/navigate_to.dart';
 import 'package:rest_api_ex/config/user_info_text_form_field.dart';
 
 import '../../config/palette.dart';
-import 'sign_up.dart';
+import 'sign_up_page.dart';
 
 class EmailAuthCheck extends StatefulWidget {
   const EmailAuthCheck({super.key});
@@ -20,16 +20,6 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
   final formKey = GlobalKey<FormState>();
   final _authCodeController = TextEditingController();
   final int authCodeLength = 6;
-
-
-  // 유효성 검사
-  void _tryValidation() {
-    final isValid = formKey.currentState!.validate();
-
-    if (isValid) {
-      formKey.currentState!.save();
-    }
-  }
 
 
   @override
@@ -143,7 +133,7 @@ class _EmailAuthCheckState extends State<EmailAuthCheck> {
         ),
       ),
       onPressed: () {
-        _tryValidation();
+        ValidationCheck().allUserInputValidation(formKey);
 
         navigateTo(context, const SignUp());
       },

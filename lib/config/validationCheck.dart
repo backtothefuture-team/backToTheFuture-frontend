@@ -1,18 +1,15 @@
+import 'package:flutter/cupertino.dart';
 
-String? inputValidation(String? value, String field, {int? minLength, bool confirmPassword = false, String? userPassword}) {
-  if( value == null || value.isEmpty ) {
-    return '$field을(를) 입력해 주세요.';
+class ValidationCheck {
+
+  // 회원가입, 로그인에 대한 사용자 입력값 유효성 검사
+  void allUserInputValidation(GlobalKey<FormState> formKey) {
+    final isValid = formKey.currentState!.validate();
+
+    if( isValid ) {
+      formKey.currentState!.save();
+    }
   }
-
-  if( minLength != null && value.length < minLength ) {
-    return '$field는 $minLength자리 이상 입력해 주세요.';
-  }
-
-  if( confirmPassword && value != userPassword ) {
-    return '비밀번호가 일치하지 않습니다.';
-  }
-
-  return null;
 }
 
 String? validateEmail(String? value) {
