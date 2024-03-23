@@ -4,7 +4,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:rest_api_ex/data/model/oauth_model.dart';
 import 'package:rest_api_ex/data/source/rest_client.dart';
 
-import '../data/source/ErrorHandler.dart';
+import '../data/source/error_handler.dart';
 
 void kakaoTalkSignInProcess(RestClient restClient) async {
   // 카카오 실행 가능 여부 확인

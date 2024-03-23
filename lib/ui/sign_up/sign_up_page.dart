@@ -8,7 +8,7 @@ import 'package:rest_api_ex/ui/sign_up/sign_up_form.dart';
 
 import '../../config/palette.dart';
 import '../../data/model/user_model.dart';
-import '../../data/source/ErrorHandler.dart';
+import '../../data/source/error_handler.dart';
 import '../../data/source/rest_client.dart';
 
 class SignUp extends StatefulWidget {
