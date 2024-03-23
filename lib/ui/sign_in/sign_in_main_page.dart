@@ -64,10 +64,13 @@ class MainSignInPage extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const EmailSignIn(),
-            ));
+          context,
+          MaterialPageRoute(
+            builder: (context) => EmailSignIn(
+              restClient: restClient,
+            ),
+          ),
+        );
       },
       child: Text('이메일 로그인'),
     );
