@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_api_ex/config/gaps.dart';
-import 'package:rest_api_ex/config/inputValidation.dart';
+import 'package:rest_api_ex/config/validationCheck.dart';
 import 'package:rest_api_ex/config/user_info_text_form_field.dart';
 
 import '../../config/palette.dart';
