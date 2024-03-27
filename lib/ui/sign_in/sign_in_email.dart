@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rest_api_ex/config/gaps.dart';
 import 'package:rest_api_ex/data/source/rest_client.dart';
@@ -12,9 +13,7 @@ import '../my_bottom_navigation.dart';
 import '../sign_up/email_auth_request.dart';
 
 class EmailSignIn extends StatefulWidget {
-  const EmailSignIn({required this.restClient, super.key});
-
-  final RestClient restClient;
+  const EmailSignIn({super.key});
 
   @override
   State<EmailSignIn> createState() => _EmailSignInState();
@@ -71,7 +70,7 @@ class _EmailSignInState extends State<EmailSignIn> {
                       Gaps.gapH20,
 
                       // 로그인 버튼
-                      _signInButton(context, widget.restClient),
+                      _signInButton(context),
                     ],
                   ),
                 ),
@@ -96,7 +95,9 @@ class _EmailSignInState extends State<EmailSignIn> {
   }
 
   // 로그인 버튼
-  Widget _signInButton(BuildContext context, RestClient restClient) {
+  Widget _signInButton(BuildContext context) {
+    final RestClient restClient = GetIt.instance<RestClient>();
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Palette.primaryColor,

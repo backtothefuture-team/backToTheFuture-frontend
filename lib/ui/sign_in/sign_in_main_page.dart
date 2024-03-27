@@ -7,9 +7,7 @@ import '../../data/source/rest_client.dart';
 import 'sign_in_email.dart';
 
 class MainSignInPage extends StatelessWidget {
-  MainSignInPage({super.key});
-
-  final RestClient restClient = GetIt.instance<RestClient>();
+  const MainSignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class MainSignInPage extends StatelessWidget {
   Widget kakaoSignInButton() {
     return ElevatedButton(
       onPressed: () async {
-        kakaoTalkSignInProcess(restClient);
+        await SocialSignIn().kakaoTalkSignInProcess();
       },
       child: Text('카카오톡 로그인'),
     );
@@ -67,7 +65,7 @@ class MainSignInPage extends StatelessWidget {
   Widget naverSignInButton() {
     return ElevatedButton(
       onPressed: () async {
-        await naverSignInProcess();
+        await SocialSignIn().naverSignInProcess();
       },
       child: Text('네이버 로그인'),
     );
@@ -79,9 +77,7 @@ class MainSignInPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => EmailSignIn(
-              restClient: restClient,
-            ),
+            builder: (context) => const EmailSignIn(),
           ),
         );
       },
