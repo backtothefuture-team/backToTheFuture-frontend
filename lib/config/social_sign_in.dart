@@ -1,5 +1,6 @@
 
 import 'package:flutter/services.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:rest_api_ex/data/model/oauth_model.dart';
 import 'package:rest_api_ex/data/source/rest_client.dart';
@@ -52,5 +53,18 @@ void kakaoTalkSignInProcess(RestClient restClient) async {
       ErrorHandler.handle(error).failure;
 
     }
+  }
+}
+
+Future<void> naverSignInProcess() async {
+  try {
+    final NaverLoginResult result = await FlutterNaverLogin.logIn();
+
+    if( result.status == NaverLoginStatus.loggedIn ) {
+      print(result.accessToken);
+      print(result.account.name);
+    }
+  } catch (error) {
+    print('네이버 로그인 에러: $error');
   }
 }

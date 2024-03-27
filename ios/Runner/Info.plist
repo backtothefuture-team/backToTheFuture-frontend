@@ -30,9 +30,48 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakao81744e25b42accb8e343708484a15cda</string>
+				<string>backToTheFuture</string>
 			</array>
 		</dict>
 	</array>
+
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>naversearchapp</string>
+        <string>naversearchthirdlogin</string>
+    </array>
+    <key>naverServiceAppUrlScheme</key>
+    <string>backToTheFuture</string>
+    <key>naverConsumerKey</key>
+    <string>rX3iQpQTYSGHh78IXmKU</string>
+    <key>naverConsumerSecret</key>
+    <string>eNOnm_jXPj</string>
+    <key>naverServiceAppName</key>
+    <string>backToTheFuture</string>
+
+    <!-- http allows configurations -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+       <key>NSAllowsArbitraryLoads</key>
+       <true/>
+       <key>NSExceptionDomains</key>
+       <dict>
+          <key>naver.com</key>
+          <dict>
+             <key>NSExceptionRequiresForwardSecrecy</key>
+             <false/>
+             <key>NSIncludesSubdomains</key>
+             <true/>
+          </dict>
+          <key>naver.net</key>
+          <dict>
+             <key>NSExceptionRequiresForwardSecrecy</key>
+             <false/>
+             <key>NSIncludesSubdomains</key>
+             <true/>
+          </dict>
+       </dict>
+    </dict>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>

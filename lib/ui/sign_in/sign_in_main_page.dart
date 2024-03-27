@@ -24,6 +24,9 @@ class MainSignInPage extends StatelessWidget {
             // 카카오톡 로그인 버튼
             kakaoSignInButton(),
 
+            // 네이버 로그인 버튼
+            naverSignInButton(),
+
             // 이메일 로그인 버튼
             emailSignInButton(context),
           ],
@@ -57,6 +60,16 @@ class MainSignInPage extends StatelessWidget {
         kakaoTalkSignInProcess(restClient);
       },
       child: Text('카카오톡 로그인'),
+    );
+  }
+
+  // 네이버 로그인
+  Widget naverSignInButton() {
+    return ElevatedButton(
+      onPressed: () async {
+        await naverSignInProcess();
+      },
+      child: Text('네이버 로그인'),
     );
   }
 
